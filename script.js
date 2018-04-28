@@ -217,6 +217,7 @@ function resizeImages() {
      spriteArray[i].animation.frameDelay = 10;
      spriteArray[i].animation.looping = false;
      spriteArray[i].animation.playing = false;
+     activateSprite(spriteArray[i]);
    }
  }
 
@@ -255,6 +256,29 @@ function resizeImages() {
  * spriteOne and spriteTwo to sprites in the order tht they are clicked. When
  * two sprites have been clicked, the function calls checkMatch().
  */
+
+// functions are hoisted to the top of the script
+//variables are not hoisted.
+
+
+function activateSprite(s) {
+  s.onMousePressed = function() {
+    if (spritesActive && s.animation.getFrame() !== s.animation.getLastFrame()) {
+      if (firstsprite === undefined) {
+         firstsprite = s;
+// flipSound.play();
+           s.animation.goToFrame(s.animation.getLastFrame());
+  }
+else if (s !== firstsprite){
+ secondsprite = s;
+ //flipSound.play();
+ s.animation.goToFrame(s.animation.getLastFrame());
+
+           }
+        }
+      }
+    }
+
 
 
 
